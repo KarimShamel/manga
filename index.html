@@ -361,24 +361,16 @@
       font-size: 13px;
     }
 
-    .music-button {
-      position: fixed;
-      right: 24px;
-      bottom: 24px;
-      z-index: 50;
-      background: white;
-      border: 2px solid #e93f86;
-      color: #e93f86;
-      padding: 14px 18px;
-      border-radius: 999px;
-      font-weight: 900;
-      box-shadow: 5px 5px 0 #ffc1d8;
+    .music-hero-button {
+      border: none;
       cursor: pointer;
-      transition: 0.2s;
+      font-family: inherit;
+      font-size: 16px;
     }
 
-    .music-button:hover {
-      transform: scale(1.05);
+    .music-hero-button.playing {
+      background: #2a0f1b;
+      box-shadow: 8px 8px 0 #ffb8d4;
     }
 
     @media (max-width: 1000px) {
@@ -428,6 +420,7 @@
         </p>
         <div class="hero-buttons">
           <a class="btn" href="#first-date">Watch Our First Date</a>
+          <button class="btn music-hero-button" onclick="toggleMusic()">🎵 Play Our Favorite Song</button>
           <a class="btn secondary" href="#letter">Read My Letter</a>
         </div>
       </div>
@@ -535,8 +528,6 @@
     </section>
   </main>
 
-  <div class="music-note">Optional: add a romantic song later 🎵</div>
-
   <script>
     const reveals = document.querySelectorAll('.reveal');
 
@@ -562,10 +553,6 @@
     <source src="audio/amr-diab.mp3" type="audio/mpeg">
   </audio>
 
-  <button class="music-button" onclick="toggleMusic()">
-    🎵 Play Our Song
-  </button>
-
   <script>
     const reveals = document.querySelectorAll('.reveal');
 
@@ -589,10 +576,12 @@
     function toggleMusic() {
       if (song.paused) {
         song.play();
-        document.querySelector(".music-button").textContent = "⏸ Pause Song";
+        document.querySelector(".music-hero-button").textContent = "⏸ Pause Our Favorite Song";
+        document.querySelector(".music-hero-button").classList.add("playing");
       } else {
         song.pause();
-        document.querySelector(".music-button").textContent = "🎵 Play Our Song";
+        document.querySelector(".music-hero-button").textContent = "🎵 Play Our Favorite Song";
+        document.querySelector(".music-hero-button").classList.remove("playing");
       }
     }
   </script>
