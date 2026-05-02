@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Our Love Manga</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: "Poppins", "Segoe UI", sans-serif;
+      background: #fff3f8;
+      color: #32121f;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(circle at 10% 15%, rgba(255, 100, 166, 0.18), transparent 28%),
+        radial-gradient(circle at 85% 10%, rgba(255, 210, 234, 0.9), transparent 28%),
+        radial-gradient(circle at 50% 85%, rgba(255, 86, 144, 0.16), transparent 35%);
+      z-index: -3;
+    }
+
+    .manga-dots {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0.18;
+      background-image: radial-gradient(#e94c8a 1px, transparent 1px);
+      background-size: 18px 18px;
+      z-index: -2;
+    }
+
+    .floating-hearts {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 1;
+      overflow: hidden;
+    }
+
+    .heart {
+      position: absolute;
+      bottom: -40px;
+      font-size: 24px;
+      animation: floatUp linear infinite;
+      opacity: 0.75;
+    }
+
+    .heart:nth-child(1) { left: 8%; animation-duration: 9s; animation-delay: 0s; }
+    .heart:nth-child(2) { left: 22%; animation-duration: 12s; animation-delay: 2s; }
+    .heart:nth-child(3) { left: 40%; animation-duration: 10s; animation-delay: 4s; }
+    .heart:nth-child(4) { left: 66%; animation-duration: 13s; animation-delay: 1s; }
+    .heart:nth-child(5) { left: 82%; animation-duration: 11s; animation-delay: 3s; }
+    .heart:nth-child(6) { left: 92%; animation-duration: 15s; animation-delay: 6s; }
+
+    @keyframes floatUp {
+      0% { transform: translateY(0) rotate(0deg) scale(0.8); opacity: 0; }
+      15% { opacity: 0.8; }
+      100% { transform: translateY(-115vh) rotate(360deg) scale(1.25); opacity: 0; }
+    }
+
+    nav {
+      position: fixed;
+      top: 18px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: min(92%, 980px);
+      padding: 14px 22px;
+      background: rgba(255, 255, 255, 0.72);
+      backdrop-filter: blur(18px);
+      border: 2px solid rgba(255, 100, 166, 0.28);
+      border-radius: 999px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 20px 50px rgba(234, 72, 132, 0.18);
+      z-index: 20;
+    }
+
+    .logo {
+      font-weight: 900;
+      color: #e93f86;
+      letter-spacing: 0.5px;
+    }
+
+    nav a {
+      color: #61243d;
+      text-decoration: none;
+      margin-left: 18px;
+      font-weight: 700;
+      font-size: 14px;
+    }
+
+    .hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      align-items: center;
+      gap: 42px;
+      padding: 130px 8% 70px;
+      position: relative;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 10px 18px;
+      background: #fff;
+      color: #e93f86;
+      border: 2px solid #ff9dc4;
+      border-radius: 999px;
+      font-weight: 900;
+      box-shadow: 6px 6px 0 #ffc1d8;
+      animation: popIn 0.9s ease both;
+    }
+
+    .hero h1 {
+      margin-top: 24px;
+      font-size: clamp(46px, 8vw, 105px);
+      line-height: 0.92;
+      letter-spacing: -4px;
+      color: #2a0f1b;
+    }
+
+    .hero h1 span {
+      color: #e93f86;
+      text-shadow: 5px 5px 0 #ffd1e3;
+    }
+
+    .hero p {
+      margin-top: 24px;
+      max-width: 620px;
+      font-size: 19px;
+      line-height: 1.8;
+      color: #6a3549;
+    }
+
+    .hero-buttons {
+      margin-top: 34px;
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      border: none;
+      padding: 15px 24px;
+      border-radius: 18px;
+      background: #e93f86;
+      color: white;
+      font-weight: 900;
+      text-decoration: none;
+      box-shadow: 8px 8px 0 #ffb8d4;
+      transition: 0.25s;
+    }
+
+    .btn:hover {
+      transform: translateY(-5px) rotate(-1deg);
+      box-shadow: 12px 12px 0 #ffb8d4;
+    }
+
+    .btn.secondary {
+      background: white;
+      color: #e93f86;
+      border: 2px solid #e93f86;
+    }
+
+    .hero-card {
+      position: relative;
+      min-height: 550px;
+      background: #fff;
+      border: 4px solid #24111a;
+      border-radius: 34px;
+      box-shadow: 18px 18px 0 #ffb8d4;
+      overflow: hidden;
+      transform: rotate(2deg);
+      animation: mangaPanel 3s ease-in-out infinite alternate;
+    }
+
+    @keyframes mangaPanel {
+      from { transform: rotate(2deg) translateY(0); }
+      to { transform: rotate(-1deg) translateY(-12px); }
+    }
+
+    .hero-card img {
+      width: 100%;
+      height: 100%;
+      min-height: 550px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .image-placeholder {
+      width: 100%;
+      min-height: 550px;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      padding: 36px;
+      background:
+        linear-gradient(135deg, rgba(255, 192, 217, 0.7), rgba(255, 255, 255, 0.95)),
+        repeating-linear-gradient(-45deg, transparent 0 10px, rgba(233,63,134,0.08) 10px 20px);
+    }
+
+    .image-placeholder strong {
+      display: block;
+      font-size: 28px;
+      color: #e93f86;
+      margin-bottom: 12px;
+    }
+
+    .speech {
+      position: absolute;
+      right: 24px;
+      bottom: 24px;
+      max-width: 290px;
+      background: white;
+      border: 3px solid #24111a;
+      border-radius: 24px;
+      padding: 18px 20px;
+      font-weight: 900;
+      box-shadow: 7px 7px 0 #ffd1e3;
+    }
+
+    section {
+      padding: 95px 8%;
+      position: relative;
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: clamp(34px, 5vw, 64px);
+      line-height: 1;
+      letter-spacing: -2px;
+      margin-bottom: 18px;
+      color: #2a0f1b;
+    }
+
+    .section-subtitle {
+      text-align: center;
+      max-width: 720px;
+      margin: 0 auto 48px;
+      color: #7b4258;
+      font-size: 18px;
+      line-height: 1.7;
+    }
+
+    .chapter-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 26px;
+    }
+
+    .chapter {
+      background: white;
+      border: 3px solid #24111a;
+      border-radius: 28px;
+      overflow: hidden;
+      box-shadow: 10px 10px 0 #ffc1d8;
+      transition: 0.25s;
+    }
+
+    .chapter:hover {
+      transform: translateY(-10px) rotate(-1deg);
+    }
+
+    .chapter .photo {
+      height: 250px;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      padding: 24px;
+      background: #ffe4ef;
+      border-bottom: 3px solid #24111a;
+      color: #d93679;
+      font-weight: 900;
+    }
+
+    .chapter img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+      display: block;
+      border-bottom: 3px solid #24111a;
+    }
+
+    .chapter-content {
+      padding: 24px;
+    }
+
+    .chapter-content h3 {
+      font-size: 24px;
+      margin-bottom: 10px;
+      color: #e93f86;
+    }
+
+    .chapter-content p {
+      color: #6a3549;
+      line-height: 1.7;
+    }
+
+    .timeline {
+      max-width: 980px;
+      margin: 0 auto;
+      display: grid;
+      gap: 24px;
+    }
+
+    .moment {
+      display: grid;
+      grid-template-columns: 130px 1fr;
+      gap: 20px;
+      align-items: stretch;
+      background: rgba(255,255,255,0.78);
+      border: 3px solid #24111a;
+      border-radius: 28px;
+      padding: 22px;
+      box-shadow: 9px 9px 0 #ffc1d8;
+    }
+
+    .date {
+      display: grid;
+      place-items: center;
+      background: #e93f86;
+      color: white;
+      border-radius: 20px;
+      font-weight: 900;
+      text-align: center;
+      padding: 16px;
+    }
+
+    .moment h3 {
+      color: #e93f86;
+      margin-bottom: 8px;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr 1fr;
+      grid-auto-rows: 220px;
+      gap: 20px;
+    }
+
+    .gallery-item {
+      background: white;
+      border: 3px solid #24111a;
+      border-radius: 28px;
+      overflow: hidden;
+      box-shadow: 8px 8px 0 #ffc1d8;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      padding: 24px;
+      color: #d93679;
+      font-weight: 900;
+      transition: 0.25s;
+    }
+
+    .gallery-item:hover {
+      transform: scale(1.03) rotate(1deg);
+    }
+
+    .gallery-item.big {
+      grid-row: span 2;
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .love-letter {
+      max-width: 900px;
+      margin: 0 auto;
+      background: white;
+      border: 4px solid #24111a;
+      border-radius: 38px;
+      padding: clamp(28px, 5vw, 58px);
+      box-shadow: 16px 16px 0 #ffc1d8;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .love-letter::before {
+      content: "♡";
+      position: absolute;
+      right: 28px;
+      top: -20px;
+      font-size: 170px;
+      color: rgba(233, 63, 134, 0.08);
+      font-weight: 900;
+    }
+
+    .love-letter h2 {
+      font-size: clamp(34px, 5vw, 58px);
+      color: #e93f86;
+      margin-bottom: 22px;
+    }
+
+    .love-letter p {
+      font-size: 19px;
+      color: #5c2e40;
+      line-height: 1.9;
+      margin-bottom: 18px;
+    }
+
+    .ending {
+      min-height: 85vh;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      background:
+        linear-gradient(rgba(255, 243, 248, 0.65), rgba(255, 243, 248, 0.85)),
+        radial-gradient(circle, #ffc1d8 0 3px, transparent 4px);
+      background-size: auto, 32px 32px;
+    }
+
+    .ending h2 {
+      font-size: clamp(42px, 7vw, 92px);
+      color: #e93f86;
+      line-height: 1;
+      text-shadow: 5px 5px 0 #ffd1e3;
+    }
+
+    .ending p {
+      max-width: 720px;
+      margin: 28px auto 0;
+      font-size: 21px;
+      line-height: 1.8;
+      color: #633047;
+    }
+
+    .sparkle {
+      display: inline-block;
+      animation: sparkle 1.4s ease-in-out infinite alternate;
+    }
+
+    @keyframes sparkle {
+      from { transform: scale(1) rotate(0deg); }
+      to { transform: scale(1.25) rotate(10deg); }
+    }
+
+    @keyframes popIn {
+      from { opacity: 0; transform: translateY(20px) scale(0.9); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: 0.8s ease;
+    }
+
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .music-note {
+      position: fixed;
+      left: 24px;
+      bottom: 24px;
+      z-index: 30;
+      background: white;
+      border: 2px solid #e93f86;
+      color: #e93f86;
+      padding: 12px 16px;
+      border-radius: 999px;
+      font-weight: 900;
+      box-shadow: 5px 5px 0 #ffc1d8;
+      font-size: 13px;
+    }
+
+    @media (max-width: 900px) {
+      nav {
+        border-radius: 24px;
+        align-items: flex-start;
+        gap: 10px;
+      }
+
+      nav div:last-child {
+        display: none;
+      }
+
+      .hero {
+        grid-template-columns: 1fr;
+        padding-top: 120px;
+      }
+
+      .hero-card {
+        min-height: 420px;
+      }
+
+      .hero-card img,
+      .image-placeholder {
+        min-height: 420px;
+      }
+
+      .chapter-grid,
+      .gallery {
+        grid-template-columns: 1fr;
+      }
+
+      .gallery-item.big {
+        grid-row: span 1;
+      }
+
+      .moment {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="manga-dots"></div>
+
+  <div class="floating-hearts">
+    <div class="heart">💗</div>
+    <div class="heart">💕</div>
+    <div class="heart">💖</div>
+    <div class="heart">💘</div>
+    <div class="heart">💞</div>
+    <div class="heart">💓</div>
+  </div>
+
+  <nav>
+    <div class="logo">Our Love Manga ♡</div>
+    <div>
+      <a href="#chapters">Chapters</a>
+      <a href="#timeline">Timeline</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#letter">Letter</a>
+    </div>
+  </nav>
+
+  <main>
+    <section class="hero">
+      <div class="hero-text reveal">
+        <div class="badge">Chapter 01: The Day My Heart Chose You</div>
+        <h1>Our Love<br><span>Manga</span></h1>
+        <p>
+          A soft, romantic, manga-inspired website made for the person who turned ordinary days into beautiful panels,
+          simple moments into memories, and my life into a story I never want to end.
+        </p>
+        <div class="hero-buttons">
+          <a class="btn" href="#chapters">Start Reading</a>
+          <a class="btn secondary" href="#letter">Read My Letter</a>
+        </div>
+      </div>
+
+      <div class="hero-card reveal">
+        <!-- ADD YOUR MAIN COUPLE PHOTO HERE
+             Replace the placeholder below with:
+             <img src="images/main-photo.jpg" alt="Our favorite photo">
+        -->
+        <div class="image-placeholder">
+          <div>
+            <strong>Add Your Main Photo Here</strong>
+            Put your favorite couple photo in images/main-photo.jpg
+          </div>
+        </div>
+        <div class="speech">Every love story has a first page... this is ours ♡</div>
+      </div>
+    </section>
+
+    <section id="chapters">
+      <h2 class="section-title reveal">Manga Chapters</h2>
+      <p class="section-subtitle reveal">
+        Each chapter is a memory. Replace the placeholders with your own photos and rename the titles to match your real story.
+      </p>
+
+      <div class="chapter-grid">
+        <article class="chapter reveal">
+          <!-- Replace this div with: <img src="images/first-date.jpg" alt="Our first date"> -->
+          <div class="photo">Photo 1: First Date</div>
+          <div class="chapter-content">
+            <h3>Chapter 1: When We Met</h3>
+            <p>The moment everything started quietly, beautifully, and without warning.</p>
+          </div>
+        </article>
+
+        <article class="chapter reveal">
+          <!-- Replace this div with: <img src="images/favorite-memory.jpg" alt="Favorite memory"> -->
+          <div class="photo">Photo 2: Favorite Memory</div>
+          <div class="chapter-content">
+            <h3>Chapter 2: My Favorite Scene</h3>
+            <p>A memory I replay in my heart again and again, like the best panel in a manga.</p>
+          </div>
+        </article>
+
+        <article class="chapter reveal">
+          <!-- Replace this div with: <img src="images/silly-photo.jpg" alt="Funny moment"> -->
+          <div class="photo">Photo 3: Funny Moment</div>
+          <div class="chapter-content">
+            <h3>Chapter 3: Our Chaos</h3>
+            <p>The laughs, the jokes, the silly moments, and all the little things that feel like home.</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="timeline">
+      <h2 class="section-title reveal">Our Timeline</h2>
+      <p class="section-subtitle reveal">Change the dates and events to your real relationship milestones.</p>
+
+      <div class="timeline">
+        <div class="moment reveal">
+          <div class="date">DATE<br>01</div>
+          <div>
+            <h3>The First Hello</h3>
+            <p>Write here how you met, what you felt, or the first moment you remember clearly.</p>
+          </div>
+        </div>
+
+        <div class="moment reveal">
+          <div class="date">DATE<br>02</div>
+          <div>
+            <h3>The First Favorite Memory</h3>
+            <p>Add a small story: a place, a laugh, a message, a photo, or a day you never forgot.</p>
+          </div>
+        </div>
+
+        <div class="moment reveal">
+          <div class="date">DATE<br>03</div>
+          <div>
+            <h3>The Promise</h3>
+            <p>Write something emotional here about your future together and what this person means to you.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="gallery">
+      <h2 class="section-title reveal">Memory Gallery</h2>
+      <p class="section-subtitle reveal">This is the best place to add many photos of you together.</p>
+
+      <div class="gallery">
+        <!-- Replace each gallery-item with img tags when ready -->
+        <!-- Example: <div class="gallery-item big"><img src="images/gallery-1.jpg" alt="Memory 1"></div> -->
+        <div class="gallery-item big reveal">Gallery Photo 1<br>images/gallery-1.jpg</div>
+        <div class="gallery-item reveal">Gallery Photo 2<br>images/gallery-2.jpg</div>
+        <div class="gallery-item reveal">Gallery Photo 3<br>images/gallery-3.jpg</div>
+        <div class="gallery-item reveal">Gallery Photo 4<br>images/gallery-4.jpg</div>
+        <div class="gallery-item reveal">Gallery Photo 5<br>images/gallery-5.jpg</div>
+      </div>
+    </section>
+
+    <section id="letter">
+      <div class="love-letter reveal">
+        <h2>To My Favorite Person,</h2>
+        <p>
+          If our love was a manga, you would be my favorite character, my safest place, and the reason every page feels warmer.
+          You make small moments feel special, and you make ordinary days feel like scenes worth remembering forever.
+        </p>
+        <p>
+          I made this little world for us because you deserve something soft, creative, and full of love. Every photo, every word,
+          and every heart here is a reminder that I am grateful for you.
+        </p>
+        <p>
+          I do not need a perfect story. I just want ours — with all its laughs, memories, dreams, and beautiful little moments.
+        </p>
+        <p><strong>Forever your biggest fan ♡</strong></p>
+      </div>
+    </section>
+
+    <section class="ending">
+      <div class="reveal">
+        <h2>To Be Continued... <span class="sparkle">✨</span></h2>
+        <p>
+          Because the best love stories do not end. They keep getting new chapters, new memories, and new reasons to smile.
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <div class="music-note">Optional: add a romantic song later 🎵</div>
+
+  <script>
+    const reveals = document.querySelectorAll('.reveal');
+
+    function revealOnScroll() {
+      reveals.forEach((element) => {
+        const windowHeight = window.innerHeight;
+        const elementTop = element.getBoundingClientRect().top;
+        const revealPoint = 100;
+
+        if (elementTop < windowHeight - revealPoint) {
+          element.classList.add('active');
+        }
+      });
+    }
+
+    window.addEventListener('scroll', revealOnScroll);
+    window.addEventListener('load', revealOnScroll);
+  </script>
+</body>
+</html>
