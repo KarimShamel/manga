@@ -3,22 +3,15 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Our Love Manga</title>
+  <title>For My Favorite Girl</title>
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
 
     body {
       font-family: "Poppins", "Segoe UI", sans-serif;
-      background: #fff3f8;
-      color: #32121f;
+      background: #fff1f7;
+      color: #34111f;
       overflow-x: hidden;
     }
 
@@ -27,9 +20,9 @@
       position: fixed;
       inset: 0;
       background:
-        radial-gradient(circle at 10% 15%, rgba(255, 100, 166, 0.18), transparent 28%),
-        radial-gradient(circle at 85% 10%, rgba(255, 210, 234, 0.9), transparent 28%),
-        radial-gradient(circle at 50% 85%, rgba(255, 86, 144, 0.16), transparent 35%);
+        radial-gradient(circle at 15% 15%, rgba(255, 95, 160, 0.22), transparent 28%),
+        radial-gradient(circle at 85% 8%, rgba(255, 210, 234, 0.95), transparent 30%),
+        radial-gradient(circle at 50% 85%, rgba(255, 105, 180, 0.18), transparent 35%);
       z-index: -3;
     }
 
@@ -37,8 +30,8 @@
       position: fixed;
       inset: 0;
       pointer-events: none;
-      opacity: 0.18;
-      background-image: radial-gradient(#e94c8a 1px, transparent 1px);
+      opacity: 0.16;
+      background-image: radial-gradient(#e93f86 1px, transparent 1px);
       background-size: 18px 18px;
       z-index: -2;
     }
@@ -56,7 +49,7 @@
       bottom: -40px;
       font-size: 24px;
       animation: floatUp linear infinite;
-      opacity: 0.75;
+      opacity: 0.8;
     }
 
     .heart:nth-child(1) { left: 8%; animation-duration: 9s; animation-delay: 0s; }
@@ -68,7 +61,7 @@
 
     @keyframes floatUp {
       0% { transform: translateY(0) rotate(0deg) scale(0.8); opacity: 0; }
-      15% { opacity: 0.8; }
+      15% { opacity: 0.85; }
       100% { transform: translateY(-115vh) rotate(360deg) scale(1.25); opacity: 0; }
     }
 
@@ -77,9 +70,9 @@
       top: 18px;
       left: 50%;
       transform: translateX(-50%);
-      width: min(92%, 980px);
+      width: min(94%, 1080px);
       padding: 14px 22px;
-      background: rgba(255, 255, 255, 0.72);
+      background: rgba(255, 255, 255, 0.76);
       backdrop-filter: blur(18px);
       border: 2px solid rgba(255, 100, 166, 0.28);
       border-radius: 999px;
@@ -90,17 +83,12 @@
       z-index: 20;
     }
 
-    .logo {
-      font-weight: 900;
-      color: #e93f86;
-      letter-spacing: 0.5px;
-    }
-
+    .logo { font-weight: 900; color: #e93f86; letter-spacing: 0.5px; }
     nav a {
       color: #61243d;
       text-decoration: none;
-      margin-left: 18px;
-      font-weight: 700;
+      margin-left: 15px;
+      font-weight: 800;
       font-size: 14px;
     }
 
@@ -111,7 +99,6 @@
       align-items: center;
       gap: 42px;
       padding: 130px 8% 70px;
-      position: relative;
     }
 
     .badge {
@@ -123,12 +110,11 @@
       border-radius: 999px;
       font-weight: 900;
       box-shadow: 6px 6px 0 #ffc1d8;
-      animation: popIn 0.9s ease both;
     }
 
     .hero h1 {
       margin-top: 24px;
-      font-size: clamp(46px, 8vw, 105px);
+      font-size: clamp(44px, 8vw, 104px);
       line-height: 0.92;
       letter-spacing: -4px;
       color: #2a0f1b;
@@ -141,21 +127,15 @@
 
     .hero p {
       margin-top: 24px;
-      max-width: 620px;
+      max-width: 640px;
       font-size: 19px;
       line-height: 1.8;
       color: #6a3549;
     }
 
-    .hero-buttons {
-      margin-top: 34px;
-      display: flex;
-      gap: 16px;
-      flex-wrap: wrap;
-    }
+    .hero-buttons { margin-top: 34px; display: flex; gap: 16px; flex-wrap: wrap; }
 
     .btn {
-      border: none;
       padding: 15px 24px;
       border-radius: 18px;
       background: #e93f86;
@@ -164,28 +144,20 @@
       text-decoration: none;
       box-shadow: 8px 8px 0 #ffb8d4;
       transition: 0.25s;
+      display: inline-block;
     }
 
-    .btn:hover {
-      transform: translateY(-5px) rotate(-1deg);
-      box-shadow: 12px 12px 0 #ffb8d4;
-    }
-
-    .btn.secondary {
-      background: white;
-      color: #e93f86;
-      border: 2px solid #e93f86;
-    }
+    .btn:hover { transform: translateY(-5px) rotate(-1deg); box-shadow: 12px 12px 0 #ffb8d4; }
+    .btn.secondary { background: white; color: #e93f86; border: 2px solid #e93f86; }
 
     .hero-card {
       position: relative;
-      min-height: 550px;
+      min-height: 560px;
       background: #fff;
       border: 4px solid #24111a;
       border-radius: 34px;
       box-shadow: 18px 18px 0 #ffb8d4;
       overflow: hidden;
-      transform: rotate(2deg);
       animation: mangaPanel 3s ease-in-out infinite alternate;
     }
 
@@ -197,35 +169,34 @@
     .hero-card img {
       width: 100%;
       height: 100%;
-      min-height: 550px;
+      min-height: 560px;
       object-fit: cover;
       display: block;
     }
 
-    .image-placeholder {
+    .placeholder {
+      min-height: 260px;
       width: 100%;
-      min-height: 550px;
       display: grid;
       place-items: center;
       text-align: center;
-      padding: 36px;
+      padding: 28px;
       background:
         linear-gradient(135deg, rgba(255, 192, 217, 0.7), rgba(255, 255, 255, 0.95)),
         repeating-linear-gradient(-45deg, transparent 0 10px, rgba(233,63,134,0.08) 10px 20px);
+      color: #d93679;
+      font-weight: 900;
+      line-height: 1.7;
     }
 
-    .image-placeholder strong {
-      display: block;
-      font-size: 28px;
-      color: #e93f86;
-      margin-bottom: 12px;
-    }
+    .hero-card .placeholder { min-height: 560px; }
+    .placeholder strong { display: block; font-size: 28px; color: #e93f86; margin-bottom: 8px; }
 
     .speech {
       position: absolute;
       right: 24px;
       bottom: 24px;
-      max-width: 290px;
+      max-width: 300px;
       background: white;
       border: 3px solid #24111a;
       border-radius: 24px;
@@ -234,11 +205,7 @@
       box-shadow: 7px 7px 0 #ffd1e3;
     }
 
-    section {
-      padding: 95px 8%;
-      position: relative;
-    }
-
+    section { padding: 95px 8%; position: relative; }
     .section-title {
       text-align: center;
       font-size: clamp(34px, 5vw, 64px);
@@ -247,139 +214,86 @@
       margin-bottom: 18px;
       color: #2a0f1b;
     }
-
     .section-subtitle {
       text-align: center;
-      max-width: 720px;
+      max-width: 760px;
       margin: 0 auto 48px;
       color: #7b4258;
       font-size: 18px;
       line-height: 1.7;
     }
 
-    .chapter-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 26px;
+    .video-box {
+      max-width: 1000px;
+      margin: 0 auto;
+      background: white;
+      border: 4px solid #24111a;
+      border-radius: 34px;
+      overflow: hidden;
+      box-shadow: 16px 16px 0 #ffc1d8;
     }
 
-    .chapter {
+    video {
+      width: 100%;
+      max-height: 620px;
+      display: block;
+      object-fit: cover;
+      background: #ffe4ef;
+    }
+
+    .caption {
+      padding: 24px 28px;
+      border-top: 3px solid #24111a;
+      background: white;
+    }
+    .caption h3 { color: #e93f86; margin-bottom: 8px; font-size: 26px; }
+    .caption p { color: #6a3549; line-height: 1.7; }
+
+    .memory-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 22px;
+    }
+
+    .nails-grid {
+      grid-template-columns: repeat(3, 1fr);
+      max-width: 1050px;
+      margin: 0 auto;
+    }
+
+    .photo-card {
       background: white;
       border: 3px solid #24111a;
       border-radius: 28px;
       overflow: hidden;
-      box-shadow: 10px 10px 0 #ffc1d8;
+      box-shadow: 9px 9px 0 #ffc1d8;
       transition: 0.25s;
+      position: relative;
     }
 
-    .chapter:hover {
-      transform: translateY(-10px) rotate(-1deg);
-    }
+    .photo-card:hover { transform: translateY(-8px) rotate(1deg); }
 
-    .chapter .photo {
-      height: 250px;
-      display: grid;
-      place-items: center;
-      text-align: center;
-      padding: 24px;
-      background: #ffe4ef;
-      border-bottom: 3px solid #24111a;
-      color: #d93679;
-      font-weight: 900;
-    }
-
-    .chapter img {
+    .photo-card img {
       width: 100%;
-      height: 250px;
+      height: 290px;
       object-fit: cover;
       display: block;
-      border-bottom: 3px solid #24111a;
     }
 
-    .chapter-content {
-      padding: 24px;
-    }
+    .photo-card .placeholder { height: 290px; min-height: 290px; }
 
-    .chapter-content h3 {
-      font-size: 24px;
-      margin-bottom: 10px;
-      color: #e93f86;
-    }
-
-    .chapter-content p {
-      color: #6a3549;
-      line-height: 1.7;
-    }
-
-    .timeline {
-      max-width: 980px;
-      margin: 0 auto;
-      display: grid;
-      gap: 24px;
-    }
-
-    .moment {
-      display: grid;
-      grid-template-columns: 130px 1fr;
-      gap: 20px;
-      align-items: stretch;
-      background: rgba(255,255,255,0.78);
-      border: 3px solid #24111a;
-      border-radius: 28px;
-      padding: 22px;
-      box-shadow: 9px 9px 0 #ffc1d8;
-    }
-
-    .date {
-      display: grid;
-      place-items: center;
-      background: #e93f86;
-      color: white;
-      border-radius: 20px;
-      font-weight: 900;
-      text-align: center;
-      padding: 16px;
-    }
-
-    .moment h3 {
-      color: #e93f86;
-      margin-bottom: 8px;
-    }
-
-    .gallery {
-      display: grid;
-      grid-template-columns: 1.2fr 0.8fr 1fr;
-      grid-auto-rows: 220px;
-      gap: 20px;
-    }
-
-    .gallery-item {
+    .mini-label {
+      position: absolute;
+      left: 12px;
+      top: 12px;
       background: white;
-      border: 3px solid #24111a;
-      border-radius: 28px;
-      overflow: hidden;
-      box-shadow: 8px 8px 0 #ffc1d8;
-      display: grid;
-      place-items: center;
-      text-align: center;
-      padding: 24px;
-      color: #d93679;
+      border: 2px solid #24111a;
+      border-radius: 999px;
+      padding: 7px 11px;
+      color: #e93f86;
       font-weight: 900;
-      transition: 0.25s;
-    }
-
-    .gallery-item:hover {
-      transform: scale(1.03) rotate(1deg);
-    }
-
-    .gallery-item.big {
-      grid-row: span 2;
-    }
-
-    .gallery-item img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
+      font-size: 12px;
+      box-shadow: 4px 4px 0 #ffc1d8;
     }
 
     .love-letter {
@@ -404,18 +318,8 @@
       font-weight: 900;
     }
 
-    .love-letter h2 {
-      font-size: clamp(34px, 5vw, 58px);
-      color: #e93f86;
-      margin-bottom: 22px;
-    }
-
-    .love-letter p {
-      font-size: 19px;
-      color: #5c2e40;
-      line-height: 1.9;
-      margin-bottom: 18px;
-    }
+    .love-letter h2 { font-size: clamp(34px, 5vw, 58px); color: #e93f86; margin-bottom: 22px; }
+    .love-letter p { font-size: 19px; color: #5c2e40; line-height: 1.9; margin-bottom: 18px; }
 
     .ending {
       min-height: 85vh;
@@ -434,40 +338,13 @@
       line-height: 1;
       text-shadow: 5px 5px 0 #ffd1e3;
     }
+    .ending p { max-width: 720px; margin: 28px auto 0; font-size: 21px; line-height: 1.8; color: #633047; }
 
-    .ending p {
-      max-width: 720px;
-      margin: 28px auto 0;
-      font-size: 21px;
-      line-height: 1.8;
-      color: #633047;
-    }
+    .sparkle { display: inline-block; animation: sparkle 1.4s ease-in-out infinite alternate; }
+    @keyframes sparkle { from { transform: scale(1) rotate(0deg); } to { transform: scale(1.25) rotate(10deg); } }
 
-    .sparkle {
-      display: inline-block;
-      animation: sparkle 1.4s ease-in-out infinite alternate;
-    }
-
-    @keyframes sparkle {
-      from { transform: scale(1) rotate(0deg); }
-      to { transform: scale(1.25) rotate(10deg); }
-    }
-
-    @keyframes popIn {
-      from { opacity: 0; transform: translateY(20px) scale(0.9); }
-      to { opacity: 1; transform: translateY(0) scale(1); }
-    }
-
-    .reveal {
-      opacity: 0;
-      transform: translateY(40px);
-      transition: 0.8s ease;
-    }
-
-    .reveal.active {
-      opacity: 1;
-      transform: translateY(0);
-    }
+    .reveal { opacity: 0; transform: translateY(40px); transition: 0.8s ease; }
+    .reveal.active { opacity: 1; transform: translateY(0); }
 
     .music-note {
       position: fixed;
@@ -484,43 +361,17 @@
       font-size: 13px;
     }
 
-    @media (max-width: 900px) {
-      nav {
-        border-radius: 24px;
-        align-items: flex-start;
-        gap: 10px;
-      }
+    @media (max-width: 1000px) {
+      .memory-grid { grid-template-columns: repeat(2, 1fr); }
+    }
 
-      nav div:last-child {
-        display: none;
-      }
-
-      .hero {
-        grid-template-columns: 1fr;
-        padding-top: 120px;
-      }
-
-      .hero-card {
-        min-height: 420px;
-      }
-
-      .hero-card img,
-      .image-placeholder {
-        min-height: 420px;
-      }
-
-      .chapter-grid,
-      .gallery {
-        grid-template-columns: 1fr;
-      }
-
-      .gallery-item.big {
-        grid-row: span 1;
-      }
-
-      .moment {
-        grid-template-columns: 1fr;
-      }
+    @media (max-width: 760px) {
+      nav { border-radius: 24px; }
+      nav div:last-child { display: none; }
+      .hero { grid-template-columns: 1fr; padding-top: 120px; }
+      .hero-card, .hero-card img, .hero-card .placeholder { min-height: 430px; }
+      .memory-grid, .nails-grid { grid-template-columns: 1fr; }
+      .photo-card img, .photo-card .placeholder { height: 360px; }
     }
   </style>
 </head>
@@ -537,11 +388,11 @@
   </div>
 
   <nav>
-    <div class="logo">Our Love Manga ♡</div>
+    <div class="logo">For My Favorite Girl ♡</div>
     <div>
-      <a href="#chapters">Chapters</a>
-      <a href="#timeline">Timeline</a>
-      <a href="#gallery">Gallery</a>
+      <a href="#first-date">First Date</a>
+      <a href="#duckfaces">Duck Faces</a>
+      <a href="#nails">Nails</a>
       <a href="#letter">Letter</a>
     </div>
   </nav>
@@ -549,130 +400,108 @@
   <main>
     <section class="hero">
       <div class="hero-text reveal">
-        <div class="badge">Chapter 01: The Day My Heart Chose You</div>
-        <h1>Our Love<br><span>Manga</span></h1>
+        <div class="badge">A tiny website for the prettiest girl in my world</div>
+        <h1>My Favorite<br><span>Love Story</span></h1>
         <p>
-          A soft, romantic, manga-inspired website made for the person who turned ordinary days into beautiful panels,
-          simple moments into memories, and my life into a story I never want to end.
+          This is for you — for your cute duck faces, your beautiful nails, our first date, and the photo of us that reminds me
+          how lucky I am. Every little thing about you has become one of my favorite memories.
         </p>
         <div class="hero-buttons">
-          <a class="btn" href="#chapters">Start Reading</a>
+          <a class="btn" href="#first-date">Watch Our First Date</a>
           <a class="btn secondary" href="#letter">Read My Letter</a>
         </div>
       </div>
 
       <div class="hero-card reveal">
-        <!-- ADD YOUR MAIN COUPLE PHOTO HERE
-             Replace the placeholder below with:
-             <img src="images/main-photo.jpg" alt="Our favorite photo">
+        <!-- MAIN COUPLE PHOTO
+             Put your main photo here:
+             images/main-us.jpg
+
+             To show it, replace the placeholder below with:
+             <img src="images/main-us.jpg" alt="Me and her together">
         -->
-        <div class="image-placeholder">
-          <div>
-            <strong>Add Your Main Photo Here</strong>
-            Put your favorite couple photo in images/main-photo.jpg
-          </div>
+        <img src="images/main-us.jpg" alt="Me and her together">
         </div>
-        <div class="speech">Every love story has a first page... this is ours ♡</div>
+        <div class="speech">This is my favorite panel because it has us in it ♡</div>
       </div>
     </section>
 
-    <section id="chapters">
-      <h2 class="section-title reveal">Manga Chapters</h2>
+    <section id="first-date">
+      <h2 class="section-title reveal">Our First Date</h2>
       <p class="section-subtitle reveal">
-        Each chapter is a memory. Replace the placeholders with your own photos and rename the titles to match your real story.
+        The first-date video goes here. Keep it as MP4 and name it exactly <strong>first-date.mp4</strong> inside the videos folder.
       </p>
 
-      <div class="chapter-grid">
-        <article class="chapter reveal">
-          <!-- Replace this div with: <img src="images/first-date.jpg" alt="Our first date"> -->
-          <div class="photo">Photo 1: First Date</div>
-          <div class="chapter-content">
-            <h3>Chapter 1: When We Met</h3>
-            <p>The moment everything started quietly, beautifully, and without warning.</p>
-          </div>
-        </article>
-
-        <article class="chapter reveal">
-          <!-- Replace this div with: <img src="images/favorite-memory.jpg" alt="Favorite memory"> -->
-          <div class="photo">Photo 2: Favorite Memory</div>
-          <div class="chapter-content">
-            <h3>Chapter 2: My Favorite Scene</h3>
-            <p>A memory I replay in my heart again and again, like the best panel in a manga.</p>
-          </div>
-        </article>
-
-        <article class="chapter reveal">
-          <!-- Replace this div with: <img src="images/silly-photo.jpg" alt="Funny moment"> -->
-          <div class="photo">Photo 3: Funny Moment</div>
-          <div class="chapter-content">
-            <h3>Chapter 3: Our Chaos</h3>
-            <p>The laughs, the jokes, the silly moments, and all the little things that feel like home.</p>
-          </div>
-        </article>
-      </div>
-    </section>
-
-    <section id="timeline">
-      <h2 class="section-title reveal">Our Timeline</h2>
-      <p class="section-subtitle reveal">Change the dates and events to your real relationship milestones.</p>
-
-      <div class="timeline">
-        <div class="moment reveal">
-          <div class="date">DATE<br>01</div>
-          <div>
-            <h3>The First Hello</h3>
-            <p>Write here how you met, what you felt, or the first moment you remember clearly.</p>
-          </div>
-        </div>
-
-        <div class="moment reveal">
-          <div class="date">DATE<br>02</div>
-          <div>
-            <h3>The First Favorite Memory</h3>
-            <p>Add a small story: a place, a laugh, a message, a photo, or a day you never forgot.</p>
-          </div>
-        </div>
-
-        <div class="moment reveal">
-          <div class="date">DATE<br>03</div>
-          <div>
-            <h3>The Promise</h3>
-            <p>Write something emotional here about your future together and what this person means to you.</p>
-          </div>
+      <div class="video-box reveal">
+        <!-- FIRST DATE VIDEO
+             Add: videos/first-date.mp4
+             Optional cover image: images/first-date-cover.jpg
+        -->
+        <video controls poster="images/first-date-cover.jpg">
+          <source src="videos/first-date.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+        <div class="caption">
+          <h3>The Day I Could Not Stop Smiling</h3>
+          <p>This video is not just a memory. It is the start of one of my favorite chapters with you.</p>
         </div>
       </div>
     </section>
 
-    <section id="gallery">
-      <h2 class="section-title reveal">Memory Gallery</h2>
-      <p class="section-subtitle reveal">This is the best place to add many photos of you together.</p>
+    <section id="duckfaces">
+      <h2 class="section-title reveal">Her Cute Duck Faces</h2>
+      <p class="section-subtitle reveal">
+        Add 12 photos of her duck faces here. Rename them from <strong>duck-1.jpg</strong> to <strong>duck-12.jpg</strong> inside the images folder.
+      </p>
 
-      <div class="gallery">
-        <!-- Replace each gallery-item with img tags when ready -->
-        <!-- Example: <div class="gallery-item big"><img src="images/gallery-1.jpg" alt="Memory 1"></div> -->
-        <div class="gallery-item big reveal">Gallery Photo 1<br>images/gallery-1.jpg</div>
-        <div class="gallery-item reveal">Gallery Photo 2<br>images/gallery-2.jpg</div>
-        <div class="gallery-item reveal">Gallery Photo 3<br>images/gallery-3.jpg</div>
-        <div class="gallery-item reveal">Gallery Photo 4<br>images/gallery-4.jpg</div>
-        <div class="gallery-item reveal">Gallery Photo 5<br>images/gallery-5.jpg</div>
+      <div class="memory-grid">
+        <div class="photo-card reveal"><span class="mini-label">Duck Face 01</span><img src="images/duck-1.jpg" alt="Duck Face 1"></div>
+        <div class="photo-card reveal"><span class="mini-label">Duck Face 02</span><img src="images/duck-2.jpg" alt="Duck Face 2"></div>
+        <div class="photo-card reveal"><span class="mini-label">Duck Face 03</span><img src="images/duck-3.jpg" alt="Duck Face 3"></div>
+        <div class="photo-card reveal"><span class="mini-label">Duck Face 04</span><img src="images/duck-4.jpg" alt="Duck Face 4"></div>
+        <div class="photo-card reveal"><span class="mini-label">Duck Face 05</span><img src="images/duck-5.jpg" alt="Duck Face 5"></div>
+        <div class="photo-card reveal"><span class="mini-label">Duck Face 06</span><img src="images/duck-6.jpg" alt="Duck Face 6"></div>
+        <div class="photo-card reveal"><span class="mini-label">Duck Face 07</span><img src="images/duck-7.jpg" alt="Duck Face 7"></div>
+        <div class="photo-card reveal"><span class="mini-label">Duck Face 08</span><img src="images/duck-8.jpg" alt="Duck Face 8"></div>
+        <div class="photo-card reveal"><span class="mini-label">Duck Face 09</span><img src="images/duck-9.jpg" alt="Duck Face 9"></div>
+        <div class="photo-card reveal"><span class="mini-label">Duck Face 10</span><img src="images/duck-10.jpg" alt="Duck Face 10"></div>
+        <div class="photo-card reveal"><span class="mini-label">Duck Face 11</span><img src="images/duck-11.jpg" alt="Duck Face 11"></div>
+        <div class="photo-card reveal"><span class="mini-label">Duck Face 12</span><img src="images/duck-12.jpg" alt="Duck Face 12"></div>
+      </div>
+    </section>
+
+    <section id="nails">
+      <h2 class="section-title reveal">When She Shows Me Her Nails</h2>
+      <p class="section-subtitle reveal">
+        Add 9 nail photos here. Rename them from <strong>nails-1.jpg</strong> to <strong>nails-9.jpg</strong> inside the images folder.
+      </p>
+
+      <div class="memory-grid nails-grid">
+        <div class="photo-card reveal"><span class="mini-label">Nails 01</span><img src="images/nails-1.jpg" alt="Nails 1"></div>
+        <div class="photo-card reveal"><span class="mini-label">Nails 02</span><img src="images/nails-2.jpg" alt="Nails 2"></div>
+        <div class="photo-card reveal"><span class="mini-label">Nails 03</span><img src="images/nails-3.jpg" alt="Nails 3"></div>
+        <div class="photo-card reveal"><span class="mini-label">Nails 04</span><img src="images/nails-4.jpg" alt="Nails 4"></div>
+        <div class="photo-card reveal"><span class="mini-label">Nails 05</span><img src="images/nails-5.jpg" alt="Nails 5"></div>
+        <div class="photo-card reveal"><span class="mini-label">Nails 06</span><img src="images/nails-6.jpg" alt="Nails 6"></div>
+        <div class="photo-card reveal"><span class="mini-label">Nails 07</span><img src="images/nails-7.jpg" alt="Nails 7"></div>
+        <div class="photo-card reveal"><span class="mini-label">Nails 08</span><img src="images/nails-8.jpg" alt="Nails 8"></div>
+        <div class="photo-card reveal"><span class="mini-label">Nails 09</span><img src="images/nails-9.jpg" alt="Nails 9"></div>
       </div>
     </section>
 
     <section id="letter">
       <div class="love-letter reveal">
-        <h2>To My Favorite Person,</h2>
+        <h2>To My Favorite Girl,</h2>
         <p>
-          If our love was a manga, you would be my favorite character, my safest place, and the reason every page feels warmer.
-          You make small moments feel special, and you make ordinary days feel like scenes worth remembering forever.
+          I love the little things about you. Your duck faces. The way you show me your nails. The way a simple photo of us can make my whole day better.
         </p>
         <p>
-          I made this little world for us because you deserve something soft, creative, and full of love. Every photo, every word,
-          and every heart here is a reminder that I am grateful for you.
+          Our first date will always be special to me, not because it was perfect, but because it was ours. Since then, every small moment with you has become a memory I want to keep.
         </p>
         <p>
-          I do not need a perfect story. I just want ours — with all its laughs, memories, dreams, and beautiful little moments.
+          I made this little website so you can see yourself the way I see you: cute, beautiful, funny, special, and impossible to replace.
         </p>
-        <p><strong>Forever your biggest fan ♡</strong></p>
+        <p><strong>You are my favorite chapter, my favorite scene, and my favorite person ♡</strong></p>
       </div>
     </section>
 
@@ -680,7 +509,7 @@
       <div class="reveal">
         <h2>To Be Continued... <span class="sparkle">✨</span></h2>
         <p>
-          Because the best love stories do not end. They keep getting new chapters, new memories, and new reasons to smile.
+          More duck faces, more nails, more dates, more photos, more memories — and more reasons for me to love you.
         </p>
       </div>
     </section>
