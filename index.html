@@ -361,6 +361,26 @@
       font-size: 13px;
     }
 
+    .music-button {
+      position: fixed;
+      right: 24px;
+      bottom: 24px;
+      z-index: 50;
+      background: white;
+      border: 2px solid #e93f86;
+      color: #e93f86;
+      padding: 14px 18px;
+      border-radius: 999px;
+      font-weight: 900;
+      box-shadow: 5px 5px 0 #ffc1d8;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .music-button:hover {
+      transform: scale(1.05);
+    }
+
     @media (max-width: 1000px) {
       .memory-grid { grid-template-columns: repeat(2, 1fr); }
     }
@@ -534,6 +554,47 @@
 
     window.addEventListener('scroll', revealOnScroll);
     window.addEventListener('load', revealOnScroll);
+  </script>
+
+  <!-- AMR DIAB SONG PLAYER -->
+  <!-- Put your song here: audio/amr-diab.mp3 -->
+  <audio id="loveSong" loop>
+    <source src="audio/amr-diab.mp3" type="audio/mpeg">
+  </audio>
+
+  <button class="music-button" onclick="toggleMusic()">
+    🎵 Play Our Song
+  </button>
+
+  <script>
+    const reveals = document.querySelectorAll('.reveal');
+
+    function revealOnScroll() {
+      reveals.forEach((element) => {
+        const windowHeight = window.innerHeight;
+        const elementTop = element.getBoundingClientRect().top;
+        const revealPoint = 100;
+
+        if (elementTop < windowHeight - revealPoint) {
+          element.classList.add('active');
+        }
+      });
+    }
+
+    window.addEventListener('scroll', revealOnScroll);
+    window.addEventListener('load', revealOnScroll);
+
+    const song = document.getElementById("loveSong");
+
+    function toggleMusic() {
+      if (song.paused) {
+        song.play();
+        document.querySelector(".music-button").textContent = "⏸ Pause Song";
+      } else {
+        song.pause();
+        document.querySelector(".music-button").textContent = "🎵 Play Our Song";
+      }
+    }
   </script>
 </body>
 </html>
